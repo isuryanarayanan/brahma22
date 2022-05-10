@@ -1,7 +1,7 @@
 <script>
 import { mapGetters } from "vuex";
 import Loading from "./views/Loading.vue";
-import Navbar from "./components/Navbar3.vue";
+import Navbar from "./components/Navbar.vue";
 
 export default {
   name: "App",
@@ -24,7 +24,7 @@ export default {
         type="text/css"
       />
 
-      <transition :duration="1000" enter-active-class="animated fadeInUp">
+      <transition :duration="1000" enter-active-class="animated fadeIn">
         <Navbar v-if="!isLoading" />
       </transition>
       <router-view v-slot="{ Component, route }">

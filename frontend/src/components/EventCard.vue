@@ -11,46 +11,53 @@ export default {
       server: "getServer",
     }),
   },
-  methods: {
-    getStyle: function () {
-      return this.server.slice(0, -1) + this.event.poster_image;
-    },
-  },
+  methods: {},
 };
 </script>
 <template>
   <div class="card">
-    <div
-      class="card-image"
-      :style="{
-        'background-image': `url(${getStyle()})`,
-      }"
-    ></div>
-    <div class="card-details">
-      <div class="name font-1">
-        {{ event.name }}
+    <!-- card with image and buttons on the bottom -->
+    <div class="card-image">
+      <img :src="`${server.slice(0, -1) + event.poster_image}`" />
+    </div>
+    <div class="card-content">
+      <div class="card-title">
+        <h3>{{ event.name }}</h3>
       </div>
-      <div class="date"></div>
+      <div class="card-text">
+        <p>{{ event.description }}</p>
+      </div>
+    </div>
+    <div class="card-action">
+      <router-link
+        class="link"
+        active-class="link-active"
+        to="/events/{{ event.id }}"
+        >View Event</router-link
+      >
     </div>
   </div>
 </template>
 <style scoped>
+/* style the card */
 .card {
-  border-radius: 10px;
-  width: 72%;
-  height: 500px;
-
-  margin: auto;
+  border-radius: 5px;
+  margin: 1rem;
+  width: 300px;
+  padding: 1rem;
+  z-index: 9999;
 }
 .card-image {
   width: 100%;
-  height: 500px;
-  border-radius: 10px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
+  height: auto;
+  border-radius: 5px 5px 0px 0px;
 }
-.name {
-  font-size: 24px;
+.card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.card-action {
+  position: absolute;
 }
 </style>

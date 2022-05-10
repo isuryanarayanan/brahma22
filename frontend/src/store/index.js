@@ -5,9 +5,7 @@ const store = new Vuex.Store({
     isLoading: true,
     isMenu: false,
     events: [],
-    column1: [],
-    column2: [],
-    column3: [],
+    displayedEvents: [],
     mode: "development",
     development_server: "http://192.168.232.50:8000/",
     deployment_server: ""
@@ -28,15 +26,11 @@ const store = new Vuex.Store({
         return state.deployment_server;
       }
     },
-    get_eventColumn1: (state) => {
-      return state.column1;
-    },
-    get_eventColumn2: (state) => {
-      return state.column2;
-    },
-    get_eventColumn3: (state) => {
-      return state.column3;
+    getDisplayedEvents: (state) => {
+      return state.displayedEvents;
     }
+
+
   },
   mutations: {
     set_isLoading: function (state, isLoading) {
@@ -47,11 +41,11 @@ const store = new Vuex.Store({
     },
     set_events: function (state, events) {
       state.events = events
-      // split events objects into the 3 columns in order
-      state.column1 = events.slice(0, Math.ceil(events.length / 3));
-      state.column2 = events.slice(Math.ceil(events.length / 3), Math.ceil(events.length / 3) * 2);
-      state.column3 = events.slice(Math.ceil(events.length / 3) * 2, events.length);
+    },
+    set_displayedEvents: function (state, displayedEvents) {
+      state.displayedEvents = displayedEvents
     }
+
   },
   actions: {
     START_LOADING: function ({ commit }) {
@@ -66,6 +60,19 @@ const store = new Vuex.Store({
     CLOSE_MENU: function ({ commit }) {
       commit('set_isMenu', false)
     },
+    FILTER_EVENTS: function ({ commit, getters }, filters) {
+
+      // return all events which name starts with filters.search
+      let filteredEvents = getters.getEvents.filter(event => {
+        return (event.name.toLowerCase().startsWith(filters.search.toLowerCase())) && (event.category.toLowerCase().startsWith(filters.category.toLowerCase()))
+      }
+      )
+
+      // set filtered events as displayed events
+      commit('set_displayedEvents', filteredEvents)
+
+    },
+
     GET_EVENTS: function ({ getters, commit }) {
       let xhr = new XMLHttpRequest();
       let promise = new Promise((resolve, reject) => {

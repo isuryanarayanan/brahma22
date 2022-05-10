@@ -4,18 +4,27 @@ import EventCard from "../components/EventCard.vue";
 export default {
   name: "Events",
   data() {
-    return {};
+    return {
+      filter_search: "",
+      filter_category: "",
+    };
   },
   computed: {
     ...mapGetters({
       isLoading: "get_isLoading",
-      eventColumn1: "get_eventColumn1",
-      eventColumn2: "get_eventColumn2",
-      eventColumn3: "get_eventColumn3",
+      displayedEvents: "getDisplayedEvents",
       server: "getServer",
     }),
   },
   components: { EventCard },
+  methods: {
+    runFilters: function () {
+      this.$store.dispatch("FILTER_EVENTS", {
+        search: this.filter_search,
+        category: this.filter_category,
+      });
+    },
+  },
 };
 </script>
 <template>
@@ -32,64 +41,40 @@ export default {
           <p>Event's</p>
         </div>
       </div>
-      <div class="filters"></div>
-      <div class="event-list">
-        <div class="row">
-          <div class="column">
-            <div
-              class="column-content column-content-1"
-              v-for="event in eventColumn1"
-              :key="event.id"
-            >
-              <EventCard :event="event" />
-            </div>
-          </div>
-          <div class="column">
-            <div
-              class="column-content column-content-2"
-              v-for="event in eventColumn2"
-              :key="event.id"
-            >
-              <EventCard :event="event" />
-            </div>
-          </div>
-          <div class="column">
-            <div
-              class="column-content column-content-3"
-              v-for="event in eventColumn3"
-              :key="event.id"
-            >
-              <EventCard :event="event" />
-            </div>
-          </div>
+      <div class="filters">
+        <div class="filter-search">
+          <input
+            type="text"
+            placeholder="search for events"
+            v-model="filter_search"
+            v-on="runFilters()"
+          />
         </div>
+        <div class="filter-category">
+          <select name="category" id="event" v-model="filter_category">
+            <option value="">Select category</option>
+            <option value="cultural">Cultural</option>
+            <option value="technical">Technical</option>
+            <option value="general">General</option>
+          </select>
+        </div>
+      </div>
+      <div class="event-list">
+        <EventCard
+          v-for="event in displayedEvents"
+          v-bind:key="event.id"
+          :event="event"
+        />
       </div>
     </div>
   </div>
 </template>
 <style scoped>
-.row {
-  display: -ms-flexbox; /* IE10 */
-  display: flex;
-  -ms-flex-wrap: wrap; /* IE10 */
-  flex-wrap: wrap;
-  padding: 0 4px;
-}
-
-.column {
-  -ms-flex: 32%; /* IE10 */
-  flex: 32%;
-  max-width: 33%;
-  padding: 0 4px;
-}
 .container {
   width: 100%;
-  padding-top: 20%;
-}
-
-.branding {
-  display: flex;
-  align-items: center;
+  height: 100%;
+  min-height: 100vh;
+  background: #381e63;
 }
 
 .brand-main {
@@ -98,23 +83,18 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 .brand-main .brand-main_tag {
   font-size: 64px;
   margin: auto;
   white-space: nowrap;
-  color: #381e63;
+  color: #fff;
 }
 .brand-main hr {
   width: 10%;
   border: 0px;
   height: 1px;
-  background: #381e63;
+  background: #703bc4;
   padding-left: 50%;
-}
-
-.column-content {
-  margin-bottom: 20px;
 }
 .brand-background {
   line-height: 0%;
@@ -123,13 +103,21 @@ export default {
   white-space: nowrap;
 }
 .brand-background p {
+  margin-top: -4%;
   opacity: 0.1;
 }
 
 .event-list {
-  padding-bottom: 500px;
+  display: grid;
+  width: 100%;
 }
-
+.filters {
+  position: relative;
+}
+.filter-search input {
+  background: black;
+  color: white;
+}
 /* small screen */
 @media only screen and (max-width: 600px) {
   .container {
@@ -137,15 +125,43 @@ export default {
   }
   .brand-background {
     font-size: 120px;
-    margin-left: -3%;
+    margin-left: -10%;
   }
   .brand-main .brand-main_tag {
     font-size: 32px;
   }
-  .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
+  .filters {
+    padding-top: 10%;
+    width: 100%;
+  }
+  .event-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .filter-search {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .filter-search input {
+    width: 80%;
+    height: 48px;
+    border-radius: 5px;
+    border: 0;
+    padding-left: 20px;
+  }
+  .filter-category {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .filter-category select {
+    width: 60%;
+    height: 48px;
+    border-radius: 5px;
+    padding-left: 10px;
   }
 }
 /* big screen */
@@ -153,7 +169,52 @@ export default {
   .brand-background {
     width: 100%;
     text-align: center;
-    font-size: 200px;
+    font-size: 250px;
   }
+  .container {
+    padding-top: 10%;
+  }
+  .filters {
+    padding-top: 5%;
+    display: flex;
+    width: 100%;
+    margin-left: 10%;
+  }
+  .event-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .filter-search {
+    width: 35%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .filter-search input {
+    width: 100%;
+    height: 48px;
+    border-radius: 5px;
+    border: 0;
+    padding-left: 20px;
+  }
+  .filter-category {
+    width: 10%;
+    padding-left: 10px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+  }
+  .filter-category select {
+    width: 100%;
+    border: 0;
+    height: 48px;
+    border-radius: 5px;
+    padding-left: 10px;
+  }
+}
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+}
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1920px) {
 }
 </style>

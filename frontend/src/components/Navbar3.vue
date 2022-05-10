@@ -158,6 +158,7 @@ nav {
   text-decoration: none;
   color: #381e63;
 }
+
 .navbar-action {
   grid-area: action;
 }
@@ -177,7 +178,7 @@ nav {
 .action-button i {
   padding-left: 10px;
 }
-/*small screen*/
+/*extra small devices*/
 @media only screen and (max-width: 600px) {
   nav {
     grid-template-areas: "header header header header button";
@@ -197,17 +198,71 @@ nav {
     grid-area: button;
   }
 }
-/*big screen*/
+/* small devices */
 @media only screen and (min-width: 600px) {
   nav {
+    grid-template-areas: "header header header header button";
+    padding-top: 5%;
+  }
+  .brand-main {
+    font-size: 24px;
+  }
+  .brand-sub {
+    font-size: 14px;
+  }
+  .navbar-links,
+  .navbar-action {
+    display: none;
+  }
+  .navbar-button {
+    grid-area: button;
+  }
+}
+
+/* large devices */
+@media only screen and (min-width: 992px) {
+  nav {
     grid-template-areas: "header link link link action";
+    padding: 0;
   }
   .brand-main,
   .navbar-action {
     padding-top: 10%;
   }
+  .navbar-links,
+  .navbar-action {
+    display: block;
+  }
   .navbar-button {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  .brand-main {
+    font-size: 48px;
+  }
+  .brand-sub {
+    font-size: 28px;
+  }
+  .navbar-links {
+    font-size: 24px;
+  }
+  .navbar-action i {
+    font-size: 24px;
+  }
+  .action-button {
+    height: 60px;
+    border-radius: 20px;
+    width: 70%;
+    margin: auto;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #381e63;
+    font-size: 24px;
   }
 }
 </style>

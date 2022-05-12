@@ -5,6 +5,8 @@ const store = new Vuex.Store({
     isLoading: true,
     isMenu: false,
     events: [],
+    day1: [],
+    day2: [],
     displayedEvents: [],
     mode: "development",
     development_server: "http://192.168.232.50:8000/",
@@ -28,9 +30,13 @@ const store = new Vuex.Store({
     },
     getDisplayedEvents: (state) => {
       return state.displayedEvents;
+    },
+    getDay1: (state) => {
+      return state.day1;
+    },
+    getDay2: (state) => {
+      return state.day2;
     }
-
-
   },
   mutations: {
     set_isLoading: function (state, isLoading) {
@@ -41,10 +47,21 @@ const store = new Vuex.Store({
     },
     set_events: function (state, events) {
       state.events = events
+
+      state.day1 = [];
+      state.day2 = [];
+      for (let i = 0; i < events.length; i++) {
+        if (events[i].start.substring(8, 10) === "21") {
+          state.day1.push(events[i]);
+        } else if (events[i].start.substring(8, 10) === "22") {
+          state.day2.push(events[i]);
+        }
+      }
+
     },
     set_displayedEvents: function (state, displayedEvents) {
       state.displayedEvents = displayedEvents
-    }
+    },
 
   },
   actions: {

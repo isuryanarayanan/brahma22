@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "/src/views/Home2.vue";
 import Events from "/src/views/Events.vue";
+import Day from "/src/views/Day.vue";
 import NotFound from "/src/views/NotFound.vue";
 import store from "../store/index"
 
 const routes = [
     {
         path: "/", name: "Home", component: Home, meta: {
+            enterClass: 'animate__animated animate__fadeInRight',
+            leaveClass: 'animate__animated animate__fadeOutLeft'
+        }
+    }, {
+        path: "/day/:id", name: "Day", component: Day, props: true, meta: {
             enterClass: 'animate__animated animate__fadeInRight',
             leaveClass: 'animate__animated animate__fadeOutLeft'
         }

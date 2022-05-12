@@ -52,7 +52,7 @@ export default {
             class="link"
             @click="closeMenu()"
             active-class="link-active"
-            to="/events/1"
+            to="/day/1"
             >Day 1</router-link
           >
         </li>
@@ -61,7 +61,7 @@ export default {
             class="link"
             @click="closeMenu()"
             active-class="link-active"
-            to="/events/2"
+            to="/day/2"
             >Day 2</router-link
           >
         </li>
@@ -70,8 +70,8 @@ export default {
             class="link"
             @click="closeMenu()"
             active-class="link-active"
-            to="/events/3"
-            >Events</router-link
+            to="/about"
+            >About us</router-link
           >
         </li>
         <li>

@@ -73,6 +73,7 @@ export default {
 .container {
   width: 100%;
   height: 100%;
+  padding-bottom: 250px;
   min-height: 100vh;
   background: #381e63;
 }
@@ -88,6 +89,7 @@ export default {
   margin: auto;
   white-space: nowrap;
   color: #fff;
+  z-index: 999;
 }
 .brand-main hr {
   width: 10%;
@@ -95,6 +97,7 @@ export default {
   height: 1px;
   background: #703bc4;
   padding-left: 50%;
+  z-index: 999;
 }
 .brand-background {
   line-height: 0%;
@@ -108,8 +111,31 @@ export default {
 }
 
 .event-list {
+  margin-top: 20px;
   display: grid;
   width: 100%;
+  height: 500px;
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #381e63;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #703bc4;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 .filters {
   position: relative;
@@ -135,7 +161,7 @@ export default {
     width: 100%;
   }
   .event-list {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
   .filter-search {
     width: 100%;
@@ -181,7 +207,7 @@ export default {
     margin-left: 10%;
   }
   .event-list {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .filter-search {
     width: 35%;
@@ -213,8 +239,14 @@ export default {
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .event-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {
+  .event-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
 }
 </style>

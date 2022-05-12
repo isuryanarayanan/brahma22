@@ -146,6 +146,9 @@ export default {
 .event-scroll {
   grid-area: eventscroll;
 }
+.proshows {
+  display: none;
+}
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .container {

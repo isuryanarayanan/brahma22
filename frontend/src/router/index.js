@@ -1,8 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "/src/views/Home2.vue";
 import Events from "/src/views/Events.vue";
+import EventDetail from "/src/views/EventDetail.vue";
 import Day from "/src/views/Day.vue";
 import NotFound from "/src/views/NotFound.vue";
+import About from "/src/views/About.vue";
+import Sponsors from "/src/views/Sponsors.vue";
 import store from "../store/index"
 
 const routes = [
@@ -19,6 +22,21 @@ const routes = [
     },
     {
         path: "/events/:id", name: "Events", component: Events, props: true, meta: {
+            enterClass: 'animate__animated animate__fadeInRight',
+            leaveClass: 'animate__animated animate__fadeOutLeft'
+        }
+    }, {
+        path: "/events/details/:id", name: "EventDetail", component: EventDetail, props: true, meta: {
+            enterClass: 'animate__animated animate__fadeInRight',
+            leaveClass: 'animate__animated animate__fadeOutLeft'
+        }
+    }, {
+        path: "/sponsors", name: "Sponsors", component: Sponsors, meta: {
+            enterClass: 'animate__animated animate__fadeInRight',
+            leaveClass: 'animate__animated animate__fadeOutLeft'
+        }
+    }, {
+        path: "/about", name: "About", component: About, meta: {
             enterClass: 'animate__animated animate__fadeInRight',
             leaveClass: 'animate__animated animate__fadeOutLeft'
         }

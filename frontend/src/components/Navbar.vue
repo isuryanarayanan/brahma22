@@ -89,10 +89,10 @@ export default {
       <div class="navbar-action-button font-3">Register Events</div>
     </div>
     <div class="navbar-item navbar-button" @click="openMenu()" v-if="!isMenu">
-      XXX
+      <i class="fas fa-bars"></i>
     </div>
     <div class="navbar-item navbar-button" @click="closeMenu()" v-if="isMenu">
-      XXX
+      <i class="fas fa-bars"></i>
     </div>
   </nav>
 </template>
@@ -188,6 +188,9 @@ export default {
 .navbar-button {
   grid-area: button;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -242,11 +245,6 @@ export default {
   .brand-sub hr {
     background: white;
     width: 10%;
-  }
-  .navbar-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */

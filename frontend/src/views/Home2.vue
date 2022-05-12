@@ -31,7 +31,7 @@ export default {
         <div class="event-buttons">
           <div class="event-button event-button_venue">
             <i class="font-1">@</i>
-            <p class="font-2">ASIET kalady</p>
+            <a class="font-2" href="https://adishankara.ac.in/">ASIET kalady</a>
           </div>
           <div class="event-button event-button_guidelines font-2">
             Read guidelines
@@ -64,12 +64,14 @@ export default {
 .home-wrapper {
   height: 100%;
 }
+
 .container {
   width: 100%;
   display: grid;
 }
 .proshows {
   width: 100%;
+  display: none;
   grid-area: proshows;
 }
 .event-name {
@@ -83,8 +85,8 @@ export default {
 }
 .event-name-sub {
   grid-area: eventsubname;
+  position: relative;
   color: white;
-  opacity: 0.5;
 }
 .event-date {
   grid-area: eventdate;
@@ -105,6 +107,7 @@ export default {
 }
 .event-buttons {
   grid-area: eventbutton;
+  position: relative;
 }
 .event-button {
   background: #381e63;
@@ -118,15 +121,13 @@ export default {
   filter: drop-shadow(0px -4px 10px rgba(0, 0, 0, 0.25))
     drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
 }
-.event-button_venue {
-  color: #8b44ff;
+.event-button_venue a {
+  text-decoration: none;
+  color: white;
 }
 .event-button_venue i {
   color: #000;
   padding-right: 5px;
-}
-.event-button_venue:hover {
-  cursor: not-allowed;
 }
 .event-button_tag {
   color: #381e63;
@@ -146,9 +147,7 @@ export default {
 .event-scroll {
   grid-area: eventscroll;
 }
-.proshows {
-  display: none;
-}
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .container {
@@ -200,7 +199,8 @@ export default {
     transform: rotate(90deg);
     width: 100%;
     right: -45%;
-    top: 23%;
+    top: 250px;
+    opacity: 0.5;
   }
   .event-button_tag {
     width: 50%;
@@ -259,7 +259,7 @@ export default {
     font-size: 32px;
     text-align: center;
     white-space: nowrap;
-    margin-top: 27%;
+    margin-top: 28%;
   }
   .event-buttons {
     width: 50%;
@@ -278,7 +278,8 @@ export default {
   .event-buttons :nth-child(3) {
     position: absolute;
     width: 100%;
-    top: 19%;
+    top: 22%;
+    opacity: 0.5;
   }
   .event-button_tag {
     width: 50%;
@@ -303,6 +304,7 @@ export default {
   .event-scroll {
     display: none;
   }
+  .events,
   .proshows {
     margin-top: 50%;
   }
@@ -409,7 +411,8 @@ export default {
     justify-content: center;
     background: rgba(0, 0, 0, 0.1);
   }
-  .proshows {
+  .proshows,
+  .events {
     margin: 0;
   }
 }
@@ -491,7 +494,7 @@ export default {
     background: white;
   }
   .event-scroll {
-    margin-top: 2%;
+    margin-top: 0%;
     display: block;
     grid-area: eventscroll;
     display: flex;

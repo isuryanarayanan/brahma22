@@ -5,12 +5,13 @@ const store = new Vuex.Store({
     isLoading: true,
     isMenu: false,
     events: [],
+    currentEvent: null,
     day1: [],
     day2: [],
     displayedEvents: [],
-    mode: "development",
+    mode: "deployment",
     development_server: "http://192.168.232.50:8000/",
-    deployment_server: ""
+    deployment_server: "https://alohaasiet.pythonanywhere.com/"
   },
   getters: {
     get_isLoading: (state) => {
@@ -36,6 +37,9 @@ const store = new Vuex.Store({
     },
     getDay2: (state) => {
       return state.day2;
+    },
+    getCurrentEvent: (state) => {
+      return state.currentEvent;
     }
   },
   mutations: {
@@ -47,6 +51,17 @@ const store = new Vuex.Store({
     },
     set_events: function (state, events) {
       state.events = events
+
+      // from event.start parse datetime string and sort the events list 
+      // by start date
+      state.events.sort((a, b) => {
+        return new Date(a.start) - new Date(b.start);
+      });
+
+
+
+
+
 
       state.day1 = [];
       state.day2 = [];
@@ -62,6 +77,10 @@ const store = new Vuex.Store({
     set_displayedEvents: function (state, displayedEvents) {
       state.displayedEvents = displayedEvents
     },
+    set_currentEvent: function (state, currentEvent) {
+      state.currentEvent = currentEvent
+    }
+
 
   },
   actions: {
@@ -110,7 +129,7 @@ const store = new Vuex.Store({
       });
       return promise;
     },
-    GET_EVENT: function ({ getters }, id) {
+    GET_EVENT: function ({ getters, commit }, id) {
       let xhr = new XMLHttpRequest();
       let promise = new Promise((resolve, reject) => {
         xhr.open("GET", getters["getServer"] + "events/event/" + id + "/");
@@ -125,6 +144,10 @@ const store = new Vuex.Store({
         };
         xhr.send();
       });
+
+      promise.then(e => {
+        this.commit("set_currentEvent", JSON.parse(e.response))
+      })
 
       return promise;
     },

@@ -46,27 +46,33 @@ export default {
     </div>
     <div class="timeline">
       <div
-        v-for="event in getDay()"
+        v-for="(event, index) in getDay()"
         v-bind:key="event.id"
         class="timeline-container"
-        :class="{ right: event.id % 2 == 0, left: event.id % 2 == 1 }"
+        :class="{ right: index % 2 == 0, left: index % 2 == 1 }"
       >
         <div class="content">
-          <h2>{{ event.name }}</h2>
-          <div class="tags">
+          <h1 class="font-1">{{ event.name }}</h1>
+          <div class="tags font-3">
             <div class="tag">day {{ id }}</div>
-            <div class="tag">{{ event.type }}</div>
+            <div class="tag">{{ event.fee }} {{ event.type }}</div>
             <div class="tag">
               {{ getParsedTime(event.start) }} - {{ getParsedTime(event.end) }}
             </div>
-            <div class="tag">{{ event.venue }}</div>
+            <div class="tag">@{{ event.venue }}</div>
           </div>
-          <p>
+          <p class="font-3">
             {{ event.short_description }}
           </p>
-          <div class="buttons">
-            <div class="register">Register</div>
-            <div class="details">See details</div>
+          <div class="buttons font-2">
+            <div class="button details">
+              <router-link
+                class="details"
+                active-class="link-active"
+                :to="'/events/details/' + event.id"
+                >Details</router-link
+              >
+            </div>
           </div>
         </div>
       </div>
@@ -76,6 +82,7 @@ export default {
 <style scoped>
 .container {
   width: 100%;
+  min-height: 100vh;
   height: auto;
   padding-bottom: 100px;
 }
@@ -87,7 +94,7 @@ export default {
   justify-content: center;
 }
 .brand-main .brand-main_tag {
-  font-size: 64px;
+  font-size: 122px;
   margin: auto;
   white-space: nowrap;
   color: #fff;
@@ -110,7 +117,7 @@ export default {
   opacity: 0.1;
 }
 .timeline {
-  max-width: 1200px;
+  max-width: 600px;
   width: 100%;
   margin: 0 auto;
   position: relative;
@@ -119,7 +126,7 @@ export default {
 .timeline::after {
   content: "";
   position: absolute;
-  width: 6px;
+  width: 3px;
   background-color: white;
   top: 0;
   bottom: 0;
@@ -194,11 +201,81 @@ export default {
 /* The actual content */
 .content {
   padding: 20px 30px;
-  background-color: white;
-  height: 300px;
+  background-color: black;
+  color: white;
+  height: auto;
   margin-top: 10px;
   position: relative;
-  border-radius: 6px;
+  border-radius: 20px;
+}
+
+.content .tags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.content .tag {
+  background: white;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 14px;
+  color: black;
+}
+.buttons {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+}
+.buttons .button {
+  background: #703bc4;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  font-size: 14px;
+  color: black;
+}
+.buttons .button a {
+  text-decoration: none;
+}
+.buttons .register,
+.details {
+  color: white;
+}
+/* Place the timelime to the left */
+.timeline::after {
+  left: 31px;
+}
+
+/* Full-width containers */
+.timeline-container {
+  width: 80%;
+  padding-left: 60px;
+  padding-right: 5px;
+}
+
+/* Make sure that all arrows are pointing leftwards */
+.timeline-container::before {
+  left: 50px;
+  border: medium solid #703bc4;
+  border-width: 10px 10px 10px 0;
+  border-color: transparent black transparent transparent;
+}
+
+/* Make sure all circles are at the same spot */
+.left::after,
+.right::after {
+  left: 0px;
+}
+
+/* Make all right containers behave like the left ones */
+.right {
+  left: 0%;
 }
 
 /* small screen */
@@ -231,7 +308,7 @@ export default {
     left: 50px;
     border: medium solid #703bc4;
     border-width: 10px 10px 10px 0;
-    border-color: transparent white transparent transparent;
+    border-color: transparent black transparent transparent;
   }
 
   /* Make sure all circles are at the same spot */
@@ -244,6 +321,25 @@ export default {
   .right {
     left: 0%;
   }
+  .content .tags {
+    display: block;
+    margin: auto;
+
+    width: 80%;
+    justify-content: space-around;
+  }
+  .content .tag {
+    background: black;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 12px;
+    border: 1px solid rgb(31, 31, 31);
+    color: white;
+  }
 }
 /* big screen */
 @media only screen and (min-width: 600px) {
@@ -255,15 +351,75 @@ export default {
   .container {
     padding-top: 15%;
   }
+  .content .tags {
+    display: block;
+    margin: auto;
+
+    width: 80%;
+    justify-content: space-around;
+  }
+  .content .tag {
+    background: black;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 12px;
+    border: 1px solid rgb(31, 31, 31);
+    color: white;
+  }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
+  .content .tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .timeline {
+    max-width: 900px;
+  }
+  .content .tag {
+    background: white;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 14px;
+    color: black;
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {
   .brand-background {
-    margin-left: -5%;
+    margin-left: 10%;
     margin-top: 1%;
+  }
+  .timeline {
+    max-width: 1200px;
+  }
+  .content .tags {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .content .tag {
+    background: white;
+    padding: 10px 20px 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    font-size: 16px;
+    color: black;
+  }
+  .content {
+    font-size: 24px;
   }
 }
 </style>

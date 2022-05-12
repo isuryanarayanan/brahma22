@@ -73,7 +73,6 @@ export default {
 .container {
   width: 100%;
   height: 100%;
-  padding-bottom: 250px;
   min-height: 100vh;
   background: #381e63;
 }
@@ -115,12 +114,12 @@ export default {
   display: grid;
   width: 100%;
   height: 500px;
-  position: absolute;
+  position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
 }
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 5px;
 }
 
 /* Track */
@@ -130,7 +129,7 @@ export default {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #703bc4;
+  background: white;
 }
 
 /* Handle on hover */
@@ -204,7 +203,7 @@ export default {
     padding-top: 5%;
     display: flex;
     width: 100%;
-    margin-left: 10%;
+    margin-left: 5%;
   }
   .event-list {
     grid-template-columns: repeat(2, 1fr);
@@ -223,7 +222,7 @@ export default {
     padding-left: 20px;
   }
   .filter-category {
-    width: 10%;
+    width: 20%;
     padding-left: 10px;
     display: flex;
     align-content: center;
@@ -245,7 +244,12 @@ export default {
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {
+  .filters {
+    margin-left: 13%;
+  }
   .event-list {
+    margin-left: 9%;
+    width: 82%;
     grid-template-columns: repeat(6, 1fr);
   }
 }

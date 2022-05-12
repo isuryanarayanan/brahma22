@@ -11,7 +11,32 @@ export default {
       server: "getServer",
     }),
   },
-  methods: {},
+  methods: {
+    getParsedTime(datetime) {
+      // write a function to return time in 12 hour format from a datetime string in the format of "YYYY-MM-DD HH:MM:SS"
+      // return the time in 12 hour format
+      // return "12:00 PM";
+      var date = new Date(datetime);
+      var hours = date.getHours();
+      var minutes = date.getMinutes();
+      var ampm = hours >= 12 ? "PM" : "AM";
+      hours = hours % 12;
+      hours = hours ? hours : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      var strTime = hours + ":" + minutes + " " + ampm;
+      return strTime;
+    },
+    getDay(datetime) {
+      // return 1 if day is 21 and return 2 if the day is 22
+      var date = new Date(datetime);
+      var day = date.getDate();
+      if (day == 21) {
+        return 1;
+      } else {
+        return 2;
+      }
+    },
+  },
 };
 </script>
 <template>
@@ -27,6 +52,7 @@ export default {
           >Details</router-link
         >
         <router-link
+          v-if="!event.offline_register"
           class="register"
           active-class="link-active"
           :to="'/events/register/' + event.id"
@@ -38,8 +64,9 @@ export default {
       <div class="card-title font-1">
         <h3>{{ event.name }}</h3>
       </div>
+
       <div class="card-text font-3">
-        <p>{{ event.description }}</p>
+        <p>Day {{ getDay(event.start) }}</p>
       </div>
     </div>
   </div>
@@ -63,6 +90,7 @@ export default {
   width: 100%;
   height: auto;
   border-radius: 20px;
+  box-shadow: 0px 0px 100px rgba(250, 250, 250, 0.1);
 }
 .card-action {
   position: absolute;
@@ -82,7 +110,7 @@ export default {
 }
 
 .card-image-actions .details {
-  width: 50%;
+  width: 100%;
   font-size: 14px;
   color: #381e63;
   font-family: "Poppins", sans-serif;
@@ -93,7 +121,7 @@ export default {
   justify-content: center;
 }
 .card-image-actions .register {
-  width: 50%;
+  width: 100%;
   font-size: 14px;
   color: #381e63;
   font-family: "Poppins", sans-serif;
@@ -121,10 +149,12 @@ export default {
   .card-image-actions {
     margin-top: -13%;
     height: 48px;
+    width: 70%;
     background: white;
   }
   .card {
-    height: 400px;
+    width: 70%;
+    height: 600px;
   }
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */

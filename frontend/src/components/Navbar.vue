@@ -304,6 +304,9 @@ export default {
   .navbar-root {
     grid-template-areas: "logo brand links links links action ";
   }
+  .navbar-logo {
+    transform: scale(2);
+  }
   .mobile-navbar-root {
     display: none;
   }

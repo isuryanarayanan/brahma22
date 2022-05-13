@@ -20,7 +20,7 @@ export default {
             21<span class="event-date_day_end">'st</span>
           </p>
           <p class="event-date_day2">
-            22<span class="event-date_day_end">'nd</span>
+            20<span class="event-date_day_end">'th</span>
           </p>
           <p class="event-date_may">MAY</p>
         </div>

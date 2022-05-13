@@ -61,7 +61,7 @@ export default {
             </div>
             <div class="tag">@{{ event.venue }}</div>
           </div>
-          <p class="font-3">
+          <p class="font-3 content-description">
             {{ event.short_description }}
           </p>
           <div class="buttons font-2">
@@ -207,6 +207,9 @@ export default {
   margin-top: 10px;
   position: relative;
   border-radius: 20px;
+}
+.content-description {
+  white-space: pre-wrap;
 }
 
 .content .tags {

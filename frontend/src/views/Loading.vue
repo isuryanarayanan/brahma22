@@ -1,9 +1,6 @@
 <template>
   <div class="loader font-1">
-    <div class="banner">
-      Brahma
-      <div class="bar"></div>
-    </div>
+    <div class="banner"></div>
   </div>
   <div class="background-big">
     <div class="background-wrapper">
@@ -110,6 +107,13 @@
   position: absolute;
   color: #fff;
   z-index: 9999;
+  width: 500px;
+  height: 500px;
+
+  background-image: url("../assets/brahmalogotext.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .background-wrapper {

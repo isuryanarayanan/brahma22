@@ -30,7 +30,7 @@ export default {
       // return 1 if day is 21 and return 2 if the day is 22
       var date = new Date(datetime);
       var day = date.getDate();
-      if (day == 21) {
+      if (day == 20) {
         return 1;
       } else {
         return 2;
@@ -43,30 +43,35 @@ export default {
   <div class="card">
     <!-- card with image and buttons on the bottom -->
     <div class="card-image">
-      <img :src="`${server.slice(0, -1) + event.poster_image}`" />
-      <div class="card-image-actions">
-        <router-link
-          class="details"
-          active-class="link-active"
-          :to="'/events/details/' + event.id"
-          >Details</router-link
-        >
-        <router-link
-          v-if="!event.offline_register"
-          class="register"
-          active-class="link-active"
-          :to="'/events/register/' + event.id"
-          >Register</router-link
-        >
-      </div>
+      <router-link
+        class="card-title-link"
+        active-class="link-active"
+        :to="'/events/details/' + event.id"
+      >
+        <img :src="`${server.slice(0, -1) + event.poster_image}`" />
+      </router-link>
     </div>
     <div class="card-content">
       <div class="card-title font-1">
-        <h3>{{ event.name }}</h3>
+        <h3>
+          <router-link
+            class="card-title-link"
+            active-class="link-active"
+            :to="'/events/details/' + event.id"
+            >{{ event.name }}</router-link
+          >
+        </h3>
       </div>
 
       <div class="card-text font-3">
-        <p>Day {{ getDay(event.start) }}</p>
+        <p>
+          <router-link
+            class="card-text-link"
+            active-class="link-active"
+            :to="'/day/' + getDay(event.start)"
+            >Day {{ getDay(event.start) }}</router-link
+          >
+        </p>
       </div>
     </div>
   </div>
@@ -143,6 +148,12 @@ export default {
   font-size: 14px;
   color: white;
   line-height: 0%;
+}
+
+.card-text-link,
+.card-title-link {
+  color: white;
+  text-decoration: none;
 }
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {

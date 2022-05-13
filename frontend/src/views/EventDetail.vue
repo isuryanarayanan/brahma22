@@ -8,11 +8,12 @@ export default {
   computed: {
     ...mapGetters({
       server: "getServer",
+      mode: "getMode",
     }),
   },
   mounted() {
     this.$store.dispatch("GET_EVENT", this.id).then((e) => {
-      this.event = JSON.parse(e.response);
+      this.event = e;
       console.log(this.event);
     });
   },
@@ -21,7 +22,7 @@ export default {
       // return 1 if date is 21 and 2 if date is 22
       var date = new Date(datetime);
       var day = date.getDate();
-      if (day == 21) {
+      if (day == 20) {
         return 1;
       } else {
         return 2;
@@ -74,7 +75,10 @@ export default {
           <div class="tag">@{{ event.venue }}</div>
         </div>
         <div class="description font-3">
-          <span v-html="event.description"></span>
+          <p class="font-3">{{ event.description }}</p>
+        </div>
+        <div class="organizers">
+          <p class="font-3">Event organizers : {{ event.organizers }}</p>
         </div>
         <div class="register">
           <p v-if="!event.offline_register">
@@ -91,6 +95,9 @@ export default {
   width: 100%;
   height: auto;
   min-height: 100vh;
+}
+.organizers {
+  color: white;
 }
 
 .event-info {
@@ -126,6 +133,7 @@ export default {
 }
 .info-right .description {
   padding: 3%;
+  white-space: pre-wrap;
 }
 
 .info-right .register {
@@ -224,6 +232,10 @@ export default {
     margin: auto;
     margin-top: 10px;
   }
+  .organizers {
+    width: 100%;
+    text-align: center;
+  }
 }
 /* big screen */
 @media only screen and (min-width: 600px) {
@@ -231,6 +243,10 @@ export default {
     width: 100%;
     text-align: center;
     font-size: 250px;
+  }
+  .organizers {
+    width: 100%;
+    margin-left: 5%;
   }
   .container {
     padding-top: 10%;
@@ -267,6 +283,10 @@ export default {
   }
   .info-left {
     width: 50%;
+  }
+  .organizers {
+    width: 100%;
+    margin-left: 3%;
   }
   .info-right {
     width: 100%;
@@ -324,7 +344,11 @@ export default {
     padding-top: 50px;
     padding-left: 20px;
   }
-
+  .organizers {
+    width: 100%;
+    font-size: 24px;
+    margin-left: 1%;
+  }
   .info-right .register {
     margin-top: 50px;
     margin-left: 20px;

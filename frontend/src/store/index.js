@@ -58,17 +58,12 @@ const store = new Vuex.Store({
         return new Date(a.start) - new Date(b.start);
       });
 
-
-
-
-
-
       state.day1 = [];
       state.day2 = [];
       for (let i = 0; i < events.length; i++) {
-        if (events[i].start.substring(8, 10) === "21") {
+        if (events[i].start.substring(8, 10) === "20") {
           state.day1.push(events[i]);
-        } else if (events[i].start.substring(8, 10) === "22") {
+        } else if (events[i].start.substring(8, 10) === "21") {
           state.day2.push(events[i]);
         }
       }
@@ -99,6 +94,7 @@ const store = new Vuex.Store({
     FILTER_EVENTS: function ({ commit, getters }, filters) {
 
       // return all events which name starts with filters.search
+
       let filteredEvents = getters.getEvents.filter(event => {
         return (event.name.toLowerCase().startsWith(filters.search.toLowerCase())) && (event.category.toLowerCase().startsWith(filters.category.toLowerCase()))
       }
@@ -132,21 +128,22 @@ const store = new Vuex.Store({
     GET_EVENT: function ({ getters, commit }, id) {
       let xhr = new XMLHttpRequest();
       let promise = new Promise((resolve, reject) => {
-        xhr.open("GET", getters["getServer"] + "events/event/" + id + "/");
-        xhr.setRequestHeader("Content-Type", "Application/json");
 
-        xhr.onload = () => {
-          resolve(xhr);
-        };
+        // get event from state with id
+        let event = getters.getEvents.find(event => {
+          return event.id == id;
+        }
+        )
 
-        xhr.onerror = () => {
-          reject(xhr);
-        };
-        xhr.send();
+        // resolve event
+        resolve(event)
+
+
       });
 
       promise.then(e => {
-        this.commit("set_currentEvent", JSON.parse(e.response))
+        console.log(e)
+        this.commit("set_currentEvent", e)
       })
 
       return promise;

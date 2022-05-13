@@ -84,4 +84,9 @@ export default {
   font-family: "Poppins", sans-serif;
   font-style: normal;
 }
+
+.btn:hover {
+  border: 1px solid #8b44ff;
+  box-shadow: 0px 0px 0px 10px rgba(255, 255, 255, 0.75);
+}
 </style>

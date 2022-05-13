@@ -25,6 +25,9 @@ export default {
       });
     },
   },
+  mounted: function () {
+    this.runFilters();
+  },
 };
 </script>
 <template>
@@ -47,7 +50,6 @@ export default {
             type="text"
             placeholder="search for events"
             v-model="filter_search"
-            v-on="runFilters()"
           />
         </div>
         <div class="filter-category">
@@ -57,6 +59,9 @@ export default {
             <option value="technical">Technical</option>
             <option value="general">General</option>
           </select>
+        </div>
+        <div class="filter-submit" @click="runFilters()">
+          <button class="filter-submit-btn font-3">Apply</button>
         </div>
       </div>
       <div class="event-list">
@@ -117,6 +122,8 @@ export default {
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
+  border-top: 5px solid #381e63;
+  border-bottom: 5px solid #381e63;
 }
 ::-webkit-scrollbar {
   width: 5px;
@@ -142,6 +149,11 @@ export default {
 .filter-search input {
   background: black;
   color: white;
+}
+.filter-submit {
+  display: flex;
+  align-content: center;
+  justify-content: center;
 }
 /* small screen */
 @media only screen and (max-width: 600px) {
@@ -181,6 +193,15 @@ export default {
     display: flex;
     align-content: center;
     justify-content: center;
+  }
+
+  .filter-submit button {
+    width: 60%;
+    margin-top: 10px;
+    border: 0;
+    height: 48px;
+    border-radius: 20px;
+    background: white;
   }
   .filter-category select {
     width: 60%;
@@ -228,6 +249,14 @@ export default {
     align-content: center;
     justify-content: center;
   }
+  .filter-submit button {
+    width: 100px;
+    margin-left: 10px;
+    border: 0;
+    height: 48px;
+    border-radius: 20px;
+    background: white;
+  }
   .filter-category select {
     width: 100%;
     border: 0;
@@ -241,6 +270,14 @@ export default {
   .event-list {
     grid-template-columns: repeat(4, 1fr);
   }
+  .filter-submit button {
+    width: 100px;
+    margin-left: 10px;
+    border: 0;
+    height: 48px;
+    border-radius: 20px;
+    background: white;
+  }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1920px) {
@@ -251,6 +288,15 @@ export default {
     margin-left: 9%;
     width: 82%;
     grid-template-columns: repeat(6, 1fr);
+  }
+  .filter-submit button {
+    width: 100px;
+    margin-left: 10px;
+    border: 0;
+    height: 48px;
+    font-size: 18px;
+    border-radius: 20px;
+    background: white;
   }
 }
 </style>

@@ -14,6 +14,7 @@ EVENT_CATEGORY = (
 EVENT_TYPE = (
     ("Per Head", "per_head"),
     ("Per Team", "per_team"),
+    ("Per Head In Team", "per_head_team"),
     ("Per Submission", "per_submission")
 )
 
@@ -46,11 +47,10 @@ class Event(models.Model):
         return self.name
 
     def getDay(self):
-        # return 1 if start date is 21st may else 2
-        if self.start.date() == datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+        if self.start.date() == datetime(2022, 5, 20, tzinfo=pytz.timezone('Asia/Kolkata')).date():
             return 1
 
-        if self.start.date() == datetime(2022, 5, 22, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+        if self.start.date() == datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
             return 2
 
     def save(self, *args, **kwargs):
@@ -67,21 +67,21 @@ class Event(models.Model):
                 raise ValidationError(
                     'The start date is after the end date.')
 
-            if self.start.date() > datetime(2022, 5, 22, tzinfo=pytz.timezone('Asia/Kolkata')).date():
-                raise ValidationError(
-                    'The event should start before 22nd of may')
-
-            if self.end.date() > datetime(2022, 5, 22, tzinfo=pytz.timezone('Asia/Kolkata')).date():
-                raise ValidationError(
-                    'The event should end before 22nd of may')
-
-            if self.start.date() < datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+            if self.start.date() > datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
                 raise ValidationError(
                     'The event should start before 21st of may')
 
-            if self.end.date() < datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+            if self.end.date() > datetime(2022, 5, 21, tzinfo=pytz.timezone('Asia/Kolkata')).date():
                 raise ValidationError(
-                    'The event cannot end before 21st of may')
+                    'The event should end before 21st of may')
+
+            if self.start.date() < datetime(2022, 5, 20, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+                raise ValidationError(
+                    'The event should start before 20th of may')
+
+            if self.end.date() < datetime(2022, 5, 20, tzinfo=pytz.timezone('Asia/Kolkata')).date():
+                raise ValidationError(
+                    'The event cannot end before 20th of may')
 
         except ValidationError as e:
             raise ValidationError(e)

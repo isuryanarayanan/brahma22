@@ -146,7 +146,7 @@ export default {
   opacity: 50%;
 }
 .brand-sub {
-  color: #381e63;
+  color: #613aa0;
   font-family: "Poppins", sans-serif;
   font-weight: 300;
   font-style: italic;
@@ -166,7 +166,7 @@ export default {
   grid-area: links;
 }
 .link {
-  color: #381e63;
+  color: #613aa0;
   text-decoration: none;
 }
 .link-active {

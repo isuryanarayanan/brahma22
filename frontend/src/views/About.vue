@@ -3,7 +3,7 @@
     <div class="branding branding-college font-1">
       <div class="brand-main">
         <hr class="brand-main_line" />
-        <p class="brand-main_tag">ASIET</p>
+        <p class="brand-main_tag">BRAHMA</p>
         <hr class="brand-main_line" />
       </div>
 
@@ -12,6 +12,28 @@
       </div>
     </div>
     <div class="about-college card">
+      <p class="font-3">
+        Brahma is the much awaited national level annual three day
+        techno-cultural fest of Adi Shankara Institute Of Engineering And
+        Technology, Kalady. It is an amalgamation of technology, art and fun
+        that invokes the creator within one every passing year since 2003 and
+        with each vibrant edition of Brahma. This festival becomes the pride of
+        every Asietian for us, it's not just a festival its a deeper emotion
+        complete with a set of top-notch technical and non-technical workshops
+        to sharpen your prowess, an arena of invigorating games and competitions
+        that arouse your competency and a multitude of surprises including
+        extremely electrifying pro-shows to enthrall you, lined up to blow. Your
+        Minds
+      </p>
+    </div>
+    <div class="branding branding-brahma font-1">
+      <div class="brand-main">
+        <hr class="brand-main_line" />
+        <p class="brand-main_tag">ASIET</p>
+        <hr class="brand-main_line" />
+      </div>
+    </div>
+    <div class="about-brahma card">
       <p class="font-3">
         Adi Shankara Institute of Engineering & Technology (ASIET) affiliated to
         A P J Abdul Kalam Technological University, and approved by AICTE, has
@@ -40,28 +62,6 @@
         grooming the nation’s builders and professionals in the field of
         technology is thus shouldered by Adi Shankara Institute of Engineering &
         Technology (ASIET).
-      </p>
-    </div>
-    <div class="branding branding-brahma font-1">
-      <div class="brand-main">
-        <hr class="brand-main_line" />
-        <p class="brand-main_tag">BRAHMA</p>
-        <hr class="brand-main_line" />
-      </div>
-    </div>
-    <div class="about-brahma card">
-      <p class="font-3">
-        Brahma is the much awaited national level annual three day
-        techno-cultural fest of Adi Shankara Institute Of Engineering And
-        Technology, Kalady. It is an amalgamation of technology, art and fun
-        that invokes the creator within one every passing year since 2003 and
-        with each vibrant edition of Brahma. This festival becomes the pride of
-        every Asietian for us, it's not just a festival its a deeper emotion
-        complete with a set of top-notch technical and non-technical workshops
-        to sharpen your prowess, an arena of invigorating games and competitions
-        that arouse your competency and a multitude of surprises including
-        extremely electrifying pro-shows to enthrall you, lined up to blow. Your
-        Minds
       </p>
     </div>
   </div>

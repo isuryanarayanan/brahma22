@@ -79,6 +79,7 @@ const store = new Vuex.Store({
 
   },
   actions: {
+
     START_LOADING: function ({ commit }) {
       commit('set_isLoading', true)
     },

@@ -31,7 +31,12 @@ export default {
         <div class="event-buttons">
           <div class="event-button event-button_venue">
             <i class="font-1">@</i>
-            <a class="font-2" href="https://adishankara.ac.in/">ASIET kalady</a>
+            <a
+              class="font-2"
+              href="https://www.google.com/maps/place/Adi+Shankara+Institute+of+Engineering+and+Technology+Kaladi/@10.178164,76.4282693,17z/data=!3m1!4b1!4m5!3m4!1s0x3b0807bfa8906d61:0x11ad08dbd85357dc!8m2!3d10.178164!4d76.430458"
+              target="blank"
+              >ASIET kalady</a
+            >
           </div>
           <div class="event-button event-button_guidelines font-2">
             Read guidelines

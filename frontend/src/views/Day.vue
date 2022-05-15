@@ -52,7 +52,14 @@ export default {
         :class="{ right: index % 2 == 0, left: index % 2 == 1 }"
       >
         <div class="content">
-          <h1 class="font-1">{{ event.name }}</h1>
+          <h1 class="font-1">
+            <router-link
+              class="link"
+              active-class="link-active"
+              :to="'/events/details/' + event.id"
+              >{{ event.name }}</router-link
+            >
+          </h1>
           <div class="tags font-3">
             <div class="tag">day {{ id }}</div>
             <div class="tag">{{ event.fee }} {{ event.type }}</div>
@@ -212,6 +219,10 @@ export default {
   white-space: pre-wrap;
 }
 
+.content h1 a {
+  color: white;
+  text-decoration: none;
+}
 .content .tags {
   display: flex;
   align-items: center;
@@ -237,9 +248,11 @@ export default {
   background: #703bc4;
   padding: 10px 20px 10px 20px;
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  border-radius: 20px;
+  border-radius: 10px;
+  border: 5px solid #381e63;
   font-size: 14px;
   color: black;
 }

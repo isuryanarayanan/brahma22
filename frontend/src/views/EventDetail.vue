@@ -64,10 +64,27 @@ export default {
         <div class="poster">
           <img :src="`${server.slice(0, -1) + event.poster_image}`" />
         </div>
+
+        <div class="register">
+          <p v-if="!event.offline_register">
+            <a class="font-3" :href="event.register_url">Register Online</a>
+          </p>
+          <p v-else class="font-3">Offline registration</p>
+        </div>
+        <div class="prize font-1">
+          <div class="prize-tag">
+            PRIZE WORTH RS
+            {{ event.prize }}
+          </div>
+        </div>
+        <div class="organizers">
+          <p class="organizers-brand font-1">Event organizers</p>
+          <p class="font-3">{{ event.organizers }}</p>
+        </div>
       </div>
       <div class="info-right">
         <div class="tags font-3">
-          <div class="tag">day {{ getDay(event.start) }}</div>
+          <div class="tag">Day {{ getDay(event.start) }}</div>
           <div class="tag">{{ event.fee }} {{ event.type }}</div>
           <div class="tag">
             {{ getParsedTime(event.start) }} - {{ getParsedTime(event.end) }}
@@ -76,15 +93,6 @@ export default {
         </div>
         <div class="description font-3">
           <p class="font-3">{{ event.description }}</p>
-        </div>
-        <div class="organizers">
-          <p class="font-3">Event organizers : {{ event.organizers }}</p>
-        </div>
-        <div class="register">
-          <p v-if="!event.offline_register">
-            <a class="font-3" :href="event.register_url">Register online</a>
-          </p>
-          <p v-else class="font-3">Offline registration</p>
         </div>
       </div>
     </div>
@@ -96,8 +104,27 @@ export default {
   height: auto;
   min-height: 100vh;
 }
-.organizers {
+.organizers p {
   color: white;
+  text-align: center;
+  white-space: pre-wrap;
+  line-height: 100%;
+}
+.prize {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  padding-bottom: 10px;
+  color: #3e216d;
+}
+.prize-tag {
+  background: #3e216d;
+  color: white;
+  width: 50%;
+  padding: 15px 5px 15px 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  margin: auto;
 }
 
 .event-info {
@@ -136,21 +163,24 @@ export default {
   white-space: pre-wrap;
 }
 
-.info-right .register {
+.info-left .register {
   position: relative;
   margin-top: 10px;
+  margin: auto;
+  background: black;
   color: white;
-  width: 150px;
+  width: 280px;
   font-size: 14px;
   padding: 0px 5px 0px 5px;
-  border: 1px solid white;
+  border: 1px solid black;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 20px;
 }
 
-.info-right .register a {
+.info-left .register a {
+  text-decoration: none;
   color: white;
 }
 .poster {
@@ -246,7 +276,6 @@ export default {
   }
   .organizers {
     width: 100%;
-    margin-left: 5%;
   }
   .container {
     padding-top: 10%;
@@ -286,7 +315,6 @@ export default {
   }
   .organizers {
     width: 100%;
-    margin-left: 3%;
   }
   .info-right {
     width: 100%;
@@ -347,7 +375,6 @@ export default {
   .organizers {
     width: 100%;
     font-size: 24px;
-    margin-left: 1%;
   }
   .info-right .register {
     margin-top: 50px;

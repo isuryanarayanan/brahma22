@@ -36,7 +36,7 @@ export default {
       <div class="branding font-1">
         <div class="brand-main">
           <hr class="brand-main_line" />
-          <p class="brand-main_tag">Event's</p>
+          <p class="brand-main_tag">Events</p>
           <hr class="brand-main_line" />
         </div>
 
@@ -118,7 +118,7 @@ export default {
   margin-top: 20px;
   display: grid;
   width: 100%;
-  height: 500px;
+  height: 800px;
   position: relative;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -268,7 +268,7 @@ export default {
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   .event-list {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
   .filter-submit button {
     width: 100px;

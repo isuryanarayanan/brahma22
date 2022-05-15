@@ -1,11 +1,13 @@
 <script>
 import Proshows from "./Proshows.vue";
 import Events from "./Events.vue";
+import Contact from "../components/Contact.vue";
 export default {
   name: "Home",
   components: {
     Proshows,
     Events,
+    Contact,
   },
 };
 </script>
@@ -30,13 +32,16 @@ export default {
         </div>
         <div class="event-buttons">
           <div class="event-button event-button_venue">
-            <i class="font-1">@</i>
+            <i class="font-1"></i>
             <a
               class="font-2"
               href="https://www.google.com/maps/place/Adi+Shankara+Institute+of+Engineering+and+Technology+Kaladi/@10.178164,76.4282693,17z/data=!3m1!4b1!4m5!3m4!1s0x3b0807bfa8906d61:0x11ad08dbd85357dc!8m2!3d10.178164!4d76.430458"
               target="blank"
-              >ASIET kalady</a
-            >
+              ><img
+                src="../assets/asietwhite.png"
+                style="transform: scale(0.056)"
+                alt=""
+            /></a>
           </div>
           <div class="event-button event-button_guidelines font-2">
             Read guidelines
@@ -61,6 +66,10 @@ export default {
     <div class="events">
       <Events />
     </div>
+    <div class="more"><h1 class="font-1">More events coming soon...</h1></div>
+    <div class="contact">
+      <Contact />
+    </div>
   </div>
 </template>
 
@@ -69,7 +78,14 @@ export default {
 .home-wrapper {
   height: 100%;
 }
-
+.more {
+  position: relative;
+  z-index: 99999999;
+  width: 100%;
+  text-align: center;
+  color: #703bc4;
+  border-bottom: 5px solid #381e63;
+}
 .container {
   width: 100%;
   display: grid;
@@ -125,6 +141,10 @@ export default {
   cursor: pointer;
   filter: drop-shadow(0px -4px 10px rgba(0, 0, 0, 0.25))
     drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.25));
+}
+.event-button_venue {
+  background: transparent;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.2);
 }
 .event-button_venue a {
   text-decoration: none;

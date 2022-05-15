@@ -36,7 +36,7 @@ class Event(models.Model):
     end = models.DateTimeField(auto_now_add=False, default=datetime.now)
 
     venue = models.CharField(max_length=250, default="")
-    organizers = models.CharField(max_length=1550, default="")
+    organizers = models.TextField(default='')
     poster_image = models.ImageField(upload_to='poster_images', blank=True)
 
     offline_register = models.BooleanField(default=False)

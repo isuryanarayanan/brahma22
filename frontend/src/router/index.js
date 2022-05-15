@@ -21,7 +21,7 @@ const routes = [
         }
     },
     {
-        path: "/events/:id", name: "Events", component: Events, props: true, meta: {
+        path: "/events/", name: "Events", component: Events, props: true, meta: {
             enterClass: 'animate__animated animate__fadeInRight',
             leaveClass: 'animate__animated animate__fadeOutLeft'
         }

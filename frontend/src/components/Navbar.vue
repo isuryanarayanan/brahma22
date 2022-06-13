@@ -76,7 +76,7 @@ export default {
             >About us</router-link
           >
         </li>
-        <li>
+        <!-- <li>
           <router-link
             class="link"
             @click="closeMenu()"
@@ -84,22 +84,20 @@ export default {
             to="/sponsors"
             >Sponsors</router-link
           >
-        </li>
+        </li> -->
       </ul>
     </div>
     <div class="navbar-item navbar-action">
-      <div class="navbar-action-button font-3">
-        <router-link
-          class="link"
-          @click="closeMenu()"
-          active-class="link-active"
-          to="/events/"
-          >Register Events</router-link
-        >
-        <!-- <a href="https://www.townscript.com/o/brahma-asiet-022124">
+      <router-link
+        class="navbar-action-button font-3 link"
+        @click="closeMenu()"
+        active-class="link-active"
+        to="/events/"
+        >Register Events</router-link
+      >
+      <!-- <a href="https://www.townscript.com/o/brahma-asiet-022124">
           Register Events
         </a> -->
-      </div>
     </div>
     <div class="navbar-item navbar-button" @click="openMenu()" v-if="!isMenu">
       <i class="fas fa-bars"></i>
@@ -201,6 +199,9 @@ export default {
 
 .navbar-action {
   grid-area: action;
+}
+.navbar-action a:hover {
+  box-shadow: 4px 4px 0px #15082b;
 }
 .navbar-action a {
   color: #15082b;

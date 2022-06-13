@@ -66,10 +66,13 @@ export default {
         </div>
 
         <div class="register">
-          <p v-if="!event.offline_register">
+          <p v-if="event.sold_out" class="font-3">Sold Out</p>
+          <p v-if="!event.offline_register && !event.sold_out">
             <a class="font-3" :href="event.register_url">Register Online</a>
           </p>
-          <p v-else class="font-3">Offline registration</p>
+          <p v-if="event.offline_register && !event.sold_out" class="font-3">
+            Offline registration
+          </p>
         </div>
         <div class="prize font-1">
           <div class="prize-tag">
@@ -163,7 +166,8 @@ export default {
   white-space: pre-wrap;
 }
 
-.info-left .register {
+.info-left .register p,
+a {
   position: relative;
   margin-top: 10px;
   margin: auto;
@@ -171,7 +175,8 @@ export default {
   color: white;
   width: 280px;
   font-size: 14px;
-  padding: 0px 5px 0px 5px;
+  height: 50px;
+  padding: 0px;
   border: 1px solid black;
   display: flex;
   align-items: center;
@@ -182,6 +187,9 @@ export default {
 .info-left .register a {
   text-decoration: none;
   color: white;
+}
+.register p:hover {
+  box-shadow: 4px 4px 0px #ffffff;
 }
 .poster {
   margin: auto;
@@ -197,14 +205,11 @@ export default {
 
 .brand-main {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
 }
 .brand-main .brand-main_tag {
   font-size: 64px;
   margin: auto;
-  white-space: nowrap;
   color: #fff;
   z-index: 999;
 }

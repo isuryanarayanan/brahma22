@@ -42,6 +42,7 @@ class Event(models.Model):
     offline_register = models.BooleanField(default=False)
     register_url = models.CharField(max_length=250, default="", blank=True)
     closed = models.BooleanField(default=False)
+    sold_out = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

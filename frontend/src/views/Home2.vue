@@ -2,12 +2,16 @@
 import Proshows from "./Proshows.vue";
 import Events from "./Events.vue";
 import Contact from "../components/Contact.vue";
+import Countdown from "../components/Countdown.vue";
+import Slider from "../components/Slider.vue";
 export default {
   name: "Home",
   components: {
     Proshows,
     Events,
     Contact,
+    Countdown,
+    Slider,
   },
 };
 </script>
@@ -19,10 +23,10 @@ export default {
         <div class="event-name-sub font-1">Techno-Cultural Festival</div>
         <div class="event-date font-1">
           <p class="event-date_day1">
-            21<span class="event-date_day_end">'st</span>
+            21<span class="event-date_day_end">st</span>
           </p>
           <p class="event-date_day2">
-            20<span class="event-date_day_end">'th</span>
+            20<span class="event-date_day_end">th</span>
           </p>
           <p class="event-date_may">MAY</p>
         </div>
@@ -37,10 +41,7 @@ export default {
               class="font-2"
               href="https://www.google.com/maps/place/Adi+Shankara+Institute+of+Engineering+and+Technology+Kaladi/@10.178164,76.4282693,17z/data=!3m1!4b1!4m5!3m4!1s0x3b0807bfa8906d61:0x11ad08dbd85357dc!8m2!3d10.178164!4d76.430458"
               target="blank"
-              ><img
-                src="../assets/asietwhite.png"
-                style="transform: scale(0.056)"
-                alt=""
+              ><img src="../assets/asietwhite.png" alt=""
             /></a>
           </div>
           <div class="event-button event-button_guidelines font-2">
@@ -60,8 +61,12 @@ export default {
         </div>
       </div>
     </div>
+    <div class="countdown">
+      <Countdown />
+    </div>
     <div class="proshows">
       <Proshows />
+      <Slider />
     </div>
     <div class="events">
       <Events />
@@ -78,6 +83,11 @@ export default {
 .home-wrapper {
   height: 100%;
 }
+.countdown {
+  width: 100%;
+  height: auto;
+  min-height: 20vh;
+}
 .more {
   position: relative;
   z-index: 99999999;
@@ -91,9 +101,10 @@ export default {
   display: grid;
 }
 .proshows {
-  width: 100%;
   display: none;
+  width: 100%;
   grid-area: proshows;
+  background: #381e63;
 }
 .event-name {
   grid-area: eventname;
@@ -150,6 +161,10 @@ export default {
   text-decoration: none;
   color: white;
 }
+
+.event-button_venue a img {
+  width: 200px;
+}
 .event-button_venue i {
   color: #000;
   padding-right: 5px;
@@ -182,6 +197,9 @@ export default {
       "eventbutton eventbutton eventbutton eventbutton"
       "eventdate eventdate eventdate eventdate";
     padding-top: 15%;
+  }
+  .countdown {
+    margin-top: -15%;
   }
   .event-name {
     position: absolute;
@@ -303,7 +321,7 @@ export default {
   .event-buttons :nth-child(3) {
     position: absolute;
     width: 100%;
-    top: 22%;
+    top: 70px;
     opacity: 0.5;
   }
   .event-button_tag {
@@ -311,7 +329,7 @@ export default {
     font-size: 14px;
   }
   .event-date {
-    padding-top: 5%;
+    padding-top: 20%;
     margin: auto;
     width: 80%;
     text-align: center;
@@ -345,6 +363,10 @@ export default {
       "eventscroll eventscroll eventscroll eventscroll";
     padding-top: 10%;
   }
+
+  .countdown {
+    padding-top: 10%;
+  }
   .event-name {
     position: relative;
     font-size: 220px;
@@ -361,6 +383,7 @@ export default {
   }
 
   .event-date {
+    padding-top: 15%;
     position: relative;
     margin: 0;
     text-align: left;

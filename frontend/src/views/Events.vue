@@ -27,6 +27,7 @@ export default {
   },
   mounted: function () {
     this.runFilters();
+    console.log("triggered");
   },
 };
 </script>

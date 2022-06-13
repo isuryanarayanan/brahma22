@@ -1,3 +1,10 @@
+<script>
+export default {
+  data() {
+    return {};
+  },
+};
+</script>
 <template>
   <div class="container">
     <div class="branding font-1">
@@ -11,13 +18,11 @@
         <p>Pro-show's</p>
       </div>
     </div>
-    <div class="slider"></div>
   </div>
 </template>
 <style scoped>
 .container {
   width: 100%;
-  height: 100vh;
   background: #381e63;
 }
 

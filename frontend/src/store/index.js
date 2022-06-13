@@ -50,6 +50,13 @@ const store = new Vuex.Store({
       state.isMenu = isMenu
     },
     set_events: function (state, events) {
+
+      // remove events which are closed
+      events = events.filter(event => {
+        return event.closed === false
+      })
+
+
       state.events = events
 
       // from event.start parse datetime string and sort the events list 
@@ -106,7 +113,7 @@ const store = new Vuex.Store({
 
     },
 
-    GET_EVENTS: function ({ getters, commit }) {
+    GET_EVENTS: function ({ getters, dispatch, commit }) {
       let xhr = new XMLHttpRequest();
       let promise = new Promise((resolve, reject) => {
         xhr.open("GET", getters["getServer"] + "events/event/");
@@ -123,6 +130,8 @@ const store = new Vuex.Store({
       });
       promise.then((e) => {
         commit("set_events", JSON.parse(e.response));
+        dispatch("FILTER_EVENTS", { search: "", category: "" })
+
       });
       return promise;
     },

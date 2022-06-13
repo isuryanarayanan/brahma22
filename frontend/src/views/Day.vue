@@ -72,14 +72,13 @@ export default {
             {{ event.short_description }}
           </p>
           <div class="buttons font-2">
-            <div class="button details">
-              <router-link
-                class="details"
-                active-class="link-active"
-                :to="'/events/details/' + event.id"
-                >Details</router-link
-              >
-            </div>
+            <router-link
+              class="details"
+              active-class="link-active"
+              :to="'/events/details/' + event.id"
+            >
+              <div class="button details">Details</div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -244,11 +243,10 @@ export default {
   align-content: center;
   justify-content: space-between;
 }
-.buttons .button {
+.button {
   background: #703bc4;
   padding: 10px 20px 10px 20px;
   display: flex;
-  width: 100%;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
@@ -256,8 +254,12 @@ export default {
   font-size: 14px;
   color: black;
 }
-.buttons .button a {
+.buttons a {
+  width: 100%;
   text-decoration: none;
+}
+.buttons a .button:hover {
+  box-shadow: 4px 4px 0px #22123b;
 }
 .buttons .register,
 .details {
